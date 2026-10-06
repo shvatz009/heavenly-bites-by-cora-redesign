@@ -1,0 +1,458 @@
+/* ========================= Base ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fffaf7;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ========================= Navigation ========================= */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.25rem 6%;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+
+    background: #fce4ec;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition:
+        width .35s ease,
+        margin .35s ease,
+        padding .35s ease,
+        border-radius .35s ease,
+        box-shadow .35s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: .375rem;
+    font-size: .7rem;
+    font-weight: 700;
+}
+
+.logo img {
+    width: 110px;
+    height: 27px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: .6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-style: italic;
+    color: #8b2d24;
+    text-shadow: 1px 1px #f4e6b0;
+}
+
+.logo span small {
+    font-size: 50%;
+}
+
+.menu-button {
+    display: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000;
+    opacity: 1;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar nav a {
+    font-size: .675rem;
+}
+
+nav a:hover {
+    opacity: .6;
+}
+
+@media (min-width: 801px) {
+    .navbar > nav {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+.navbar.scrolled {
+    padding: 2px 0;
+    width: calc(100% - 24px);
+    margin: 12px auto 0;
+    border-radius: 18px;
+}
+
+
+/* ========================= Buttons ========================= */
+
+.btn {
+    display: inline-block;
+    padding: .85rem 1.5rem;
+    border-radius: 50px;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+.navbar .btn {
+    padding: .425rem .75rem;
+    font-size: .5rem;
+}
+
+.btn-primary {
+    background: #333;
+    color: white;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 1px solid #333;
+}
+
+.btn-light {
+    background: white;
+    color: #333;
+}
+
+
+/* ========================= Hero ========================= */
+
+.hero {
+    min-height: 80vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    gap: 4rem;
+
+    padding: 5rem 6%;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+    display: block;
+}
+
+.hero p {
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-image img,
+.hero-image video {
+    display: block;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+
+/* ========================= Sections ========================= */
+
+.section {
+    padding: 6rem 6%;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 3rem;
+}
+
+.section-heading h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+
+/* ========================= Product Cards ========================= */
+
+.product-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .08);
+}
+
+.product-card img {
+    height: 280px;
+    object-fit: cover;
+}
+
+.product-content {
+    padding: 1.5rem;
+}
+
+.product-content h3 {
+    margin-bottom: .5rem;
+}
+
+.product-content a {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+
+/* ========================= Catering ========================= */
+
+.catering {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #f1e6dc;
+}
+
+.catering-image img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.catering-content {
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.catering-content h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+
+/* ========================= Reviews ========================= */
+
+.review-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 2rem;
+}
+
+blockquote {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.review-grid blockquote {
+    border: 3px solid #000;
+}
+
+blockquote p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+
+/* ========================= Order CTA ========================= */
+
+.order-cta {
+    text-align: center;
+    padding: 6rem 6%;
+
+    background: #333;
+    color: white;
+}
+
+.order-cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.order-cta p {
+    margin-bottom: 2rem;
+}
+
+
+/* ========================= Footer ========================= */
+
+footer {
+    padding: 4rem 6%;
+    background: #222;
+    color: white;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 3rem;
+}
+
+.copyright {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #555;
+}
+
+
+/* ========================= Mobile ========================= */
+
+@media (max-width: 800px) {
+
+    .page-hero h1 {
+        font-size: 6rem;
+        line-height: 1;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 3rem;
+    }
+
+    .hero-image img,
+    .hero-image video {
+        height: 400px;
+    }
+
+    .product-grid,
+    .review-grid,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .catering {
+        grid-template-columns: 1fr;
+    }
+
+    .catering-content {
+        padding: 3rem 6%;
+    }
+
+}
+/* ========================= JavaScript Animations ========================= */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================= Scrolling Header ========================= */
+
+.navbar.scrolled {
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, .08);
+}
+
+
+/* ========================= Mobile Navigation ========================= */
+
+@media (max-width: 800px) {
+
+    .menu-button {
+        display: block;
+    }
+
+    nav {
+        display: none;
+    }
+
+    nav.nav-open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+}

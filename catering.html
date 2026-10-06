@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catering | Heavenly Bites by Cora</title>
+    <meta
+      name="description"
+      content="Make your next celebration sweeter with catering and custom dessert options from Heavenly Bites by Cora."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- =========================
+     Navigation
+========================= -->
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo-1.png" alt="" />
+        <span>Heavenly Bites<br /><small>by Cora</small></span>
+      </a>
+      <button class="menu-button" aria-label="Open navigation menu">☰</button>
+      <nav>
+        <a href="index.html"> Home </a>
+        <a href="menu.html"> Menu </a>
+        <a href="about.html"> Our Story </a>
+        <a href="catering.html" class="active"> Catering </a>
+        <a href="index.html#reviews"> Reviews </a>
+        <a href="index.html#contact"> Contact </a>
+      </nav>
+      <a href="#request" class="btn btn-primary"> Request Catering </a>
+    </header>
+    <!-- =========================
+     Catering Hero
+========================= -->
+    <main>
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <p class="eyebrow">Make your celebration sweeter</p>
+          <h1>Catering for life's sweetest moments.</h1>
+          <p>
+            From birthdays and weddings to showers, corporate gatherings and
+            special events, we're here to make your celebration memorable.
+          </p>
+        </div>
+      </section>
+      <!-- =========================
+     Catering Introduction
+========================= -->
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Let us handle dessert</p>
+          <h2>Something sweet for every event.</h2>
+          <p>
+            Whether you're planning an intimate gathering or a larger
+            celebration, Heavenly Bites by Cora can help create desserts your
+            guests will remember.
+          </p>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="/assets/images/birthday-cake-1.webp" alt="Birthday desserts" />
+            <div class="product-content">
+              <h3>Birthdays</h3>
+              <p>
+                Celebrate another trip around the sun with custom cakes,
+                cupcakes and treats.
+              </p>
+            </div>
+          </article>
+          <article class="product-card">
+            <img src="/assets/images/wedding-cake-1.avif" alt="Wedding desserts" />
+            <div class="product-content">
+              <h3>Weddings</h3>
+              <p>
+                Create a dessert experience that complements your special day.
+              </p>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="/assets/images/Congrats-Graduation-Cake-1.jpg"
+              alt="Desserts prepared for a special event"
+            />
+            <div class="product-content">
+              <h3>Special Events</h3>
+              <p>Showers, graduations, holidays, corporate events and more.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- =========================
+     Catering Options
+========================= -->
+      <section class="catering">
+        <div class="catering-image">
+          <img
+            src="/assets/images/baked-cheese-danish-1.jpg"
+            alt="Assorted desserts prepared for catering"
+          />
+        </div>
+        <div class="catering-content">
+          <p class="eyebrow">Build your dessert table</p>
+          <h2>Choose the treats your guests will love.</h2>
+          <p>
+            Depending on your event, your dessert selection can include
+            cupcakes, cakes, cookies, cake pops, pies, cheesecakes and other
+            specialty treats.
+          </p>
+          <a href="menu.html" class="btn btn-primary"> Browse Our Menu </a>
+        </div>
+      </section>
+      <!-- =========================
+     Catering Process
+========================= -->
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">How it works</p>
+          <h2>Planning your order is easy.</h2>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-content">
+              <h3>01 — Tell Us About Your Event</h3>
+              <p>
+                Share your event date, guest count, location and the type of
+                celebration you're planning.
+              </p>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-content">
+              <h3>02 — Choose Your Treats</h3>
+              <p>
+                We'll help you select desserts that fit your event and
+                preferences.
+              </p>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-content">
+              <h3>03 — Enjoy Your Celebration</h3>
+              <p>
+                We'll take care of the sweet part so you can focus on enjoying
+                your event.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- =========================
+     Catering Request Form
+========================= -->
+      <section id="request" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Let's get started</p>
+          <h2>Request a Catering Quote</h2>
+          <p>
+            Tell us a little about your event and we'll help you plan the
+            perfect desserts.
+          </p>
+        </div>
+        <form class="catering-form" action="#" method="post">
+          <div class="form-group">
+            <label for="name"> Your Name </label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email"> Email Address </label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone"> Phone Number </label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="event-date"> Event Date </label>
+            <input type="date" id="event-date" name="event-date" required />
+          </div>
+          <div class="form-group">
+            <label for="guests"> Number of Guests </label>
+            <input type="number" id="guests" name="guests" min="1" />
+          </div>
+          <div class="form-group">
+            <label for="event-type"> Event Type </label>
+            <select id="event-type" name="event-type">
+              <option value="">Select an event</option>
+              <option value="birthday">Birthday</option>
+              <option value="wedding">Wedding</option>
+              <option value="baby-shower">Baby Shower</option>
+              <option value="bridal-shower">Bridal Shower</option>
+              <option value="graduation">Graduation</option>
+              <option value="corporate">Corporate Event</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="message"> Tell Us About Your Event </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Tell us about the desserts you're looking for..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Submit Catering Request
+          </button>
+        </form>
+      </section>
+      <!-- =========================
+     CTA
+========================= -->
+      <section class="order-cta">
+        <h2>Let's make your event unforgettable.</h2>
+        <p>Have questions before submitting a request? We're happy to help.</p>
+        <a href="index.html#contact" class="btn btn-light"> Contact Us </a>
+      </section>
+    </main>
+    <!-- =========================
+     Footer
+========================= -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div>
+          <h3>Heavenly Bites by Cora</h3>
+          <p>
+            1067 S Walnut Ave<br />
+            Cookeville, TN 38501
+          </p>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <p>
+            Monday–Friday: 10 AM–6 PM<br />
+            Saturday: 10 AM–3 PM<br />
+            Sunday: Closed
+          </p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>(615) 707-9564</p>
+          <p>heavenlybitesbycora@gmail.com</p>
+        </div>
+      </div>
+      <p class="copyright">© 2026 Heavenly Bites by Cora</p>
+    </footer>
+    <script src="js/script.js"></script>
+       <script>
+      const menuButton = document.querySelector(".menu-button");
+      const navigation = document.querySelector("nav");
+      if (menuButton && navigation) {
+        menuButton.addEventListener("click", () => {
+          navigation.classList.toggle("nav-open");
+        });
+      }
+      // =========================
+      // Header Scroll Effect
+      // =========================
+      const header = document.querySelector(".navbar");
+      if (header) {
+        window.addEventListener("scroll", () => {
+          header.classList.toggle("scrolled", window.scrollY > 20);
+        });
+      }
+      // =========================
+      // Menu Page Filtering
+      // =========================
+      const menuFilters = document.querySelectorAll(".menu-filter");
+      const menuItems = document.querySelectorAll(".menu-item");
+      if (menuFilters.length > 0) {
+        menuFilters.forEach((filter) => {
+          filter.addEventListener("click", () => {
+            const category = filter.dataset.category;
+            menuFilters.forEach((button) => {
+              button.classList.remove("active");
+            });
+            filter.classList.add("active");
+            menuItems.forEach((item) => {
+              if (category === "all" || item.dataset.category === category) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

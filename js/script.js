@@ -89,6 +89,104 @@ animatedElements.forEach((element) => {
 });
 
 // =========================
+// Review Carousel
+// =========================
+
+const reviewsGrid = document.querySelector(".reviews-grid");
+const reviewCards = reviewsGrid
+  ? Array.from(reviewsGrid.querySelectorAll(".review-card"))
+  : [];
+
+if (reviewsGrid && reviewCards.length > 1) {
+  reviewsGrid.classList.add("is-carousel");
+  reviewsGrid.setAttribute("aria-label", "Customer reviews");
+
+  const pauseButton = document.createElement("button");
+  pauseButton.className = "review-carousel-toggle";
+  pauseButton.type = "button";
+  pauseButton.textContent = "Pause reviews";
+  pauseButton.setAttribute("aria-pressed", "false");
+  reviewsGrid.before(pauseButton);
+
+  let activeIndex = 0;
+  let cycleTimer = 0;
+  let transitionTimer = 0;
+  let isPaused = false;
+  let isTransitioning = false;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const transitionDuration = prefersReducedMotion.matches ? 0 : 600;
+
+  reviewCards.forEach((card, index) => {
+    card.setAttribute("aria-hidden", String(index !== activeIndex));
+  });
+
+  const clearTimers = () => {
+    window.clearTimeout(cycleTimer);
+    window.clearTimeout(transitionTimer);
+    cycleTimer = 0;
+    transitionTimer = 0;
+  };
+
+  const scheduleNextReview = () => {
+    if (!isPaused && !document.hidden) {
+      cycleTimer = window.setTimeout(showNextReview, 5000);
+    }
+  };
+
+  const showNextReview = () => {
+    const currentCard = reviewCards[activeIndex];
+    currentCard.classList.remove("is-active");
+    currentCard.classList.add("is-leaving");
+    currentCard.setAttribute("aria-hidden", "true");
+    isTransitioning = true;
+
+    transitionTimer = window.setTimeout(() => {
+      currentCard.classList.remove("is-leaving");
+      activeIndex = (activeIndex + 1) % reviewCards.length;
+      const nextCard = reviewCards[activeIndex];
+      nextCard.setAttribute("aria-hidden", "false");
+      nextCard.classList.add("is-active");
+      isTransitioning = false;
+      scheduleNextReview();
+    }, transitionDuration);
+  };
+
+  const pauseReviews = () => {
+    clearTimers();
+    if (isTransitioning) {
+      reviewCards[activeIndex].classList.remove("is-leaving");
+      reviewCards[activeIndex].classList.add("is-active");
+      reviewCards[activeIndex].setAttribute("aria-hidden", "false");
+      isTransitioning = false;
+    }
+  };
+
+  window.requestAnimationFrame(() => {
+    reviewCards[activeIndex].classList.add("is-active");
+    scheduleNextReview();
+  });
+
+  pauseButton.addEventListener("click", () => {
+    isPaused = !isPaused;
+    pauseButton.textContent = isPaused ? "Play reviews" : "Pause reviews";
+    pauseButton.setAttribute("aria-pressed", String(isPaused));
+    if (isPaused) {
+      pauseReviews();
+    } else {
+      scheduleNextReview();
+    }
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      pauseReviews();
+    } else {
+      scheduleNextReview();
+    }
+  });
+}
+
+// =========================
 // Menu Ordering
 // =========================
 

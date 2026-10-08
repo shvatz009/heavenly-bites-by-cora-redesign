@@ -16,8 +16,7 @@
 ========================= -->
     <header class="navbar">
       <a href="index.html" class="logo">
-        <img src="assets/images/logo-1.png" alt="" />
-        <span>Heavenly Bites<br /><small>by Cora</small></span>
+        <img src="assets/images/logo-1.png" alt="Heavenly Bites by Cora Logo" />
       </a>
       <button class="menu-button" aria-label="Open navigation menu">☰</button>
       <nav>
@@ -177,9 +176,24 @@
             <label for="event-date"> Event Date </label>
             <input type="date" id="event-date" name="event-date" required />
           </div>
+          <div class="select-time">
+            <label for="event-time">Event Time:</label>
+            <input type="time" id="event-time" name="event-time">
+          </div>
           <div class="form-group">
             <label for="guests"> Number of Guests </label>
-            <input type="number" id="guests" name="guests" min="1" />
+            <input type="number" id="guests" name="guests" min="0" />
+          </div>
+          <div class="form-group">
+            <label for="budget"> Budget per Guest </label>
+            <input type="number"
+            class="form-control"
+            id="budget" 
+            name="budget"
+            step="0.01"
+            min="0"
+            placeholder="0.00"
+            />  
           </div>
           <div class="form-group">
             <label for="event-type"> Event Type </label>

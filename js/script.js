@@ -657,3 +657,4 @@ if (menuCards.length > 0) {
   updateCheckoutOptions();
   renderCart();
 }
+// ========== This is just a demo site as a case study in cleaning up UX and UI ============ 

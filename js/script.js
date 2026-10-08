@@ -124,7 +124,23 @@ if (reviewsGrid && reviewCards.length > 1) {
   pauseButton.type = "button";
   pauseButton.textContent = "Pause reviews";
   pauseButton.setAttribute("aria-pressed", "false");
-  reviewsGrid.before(pauseButton);
+
+  const previousButton = document.createElement("button");
+  previousButton.className = "review-carousel-arrow";
+  previousButton.type = "button";
+  previousButton.textContent = "‹";
+  previousButton.setAttribute("aria-label", "Show previous review");
+
+  const nextButton = document.createElement("button");
+  nextButton.className = "review-carousel-arrow";
+  nextButton.type = "button";
+  nextButton.textContent = "›";
+  nextButton.setAttribute("aria-label", "Show next review");
+
+  const carouselControls = document.createElement("div");
+  carouselControls.className = "review-carousel-controls";
+  carouselControls.append(previousButton, pauseButton, nextButton);
+  reviewsGrid.before(carouselControls);
 
   let activeIndex = 0;
   let cycleTimer = 0;
@@ -147,35 +163,60 @@ if (reviewsGrid && reviewCards.length > 1) {
 
   const scheduleNextReview = () => {
     if (!isPaused && !document.hidden) {
-      cycleTimer = window.setTimeout(showNextReview, 5000);
+      cycleTimer = window.setTimeout(() => showReview(1), 5000);
     }
   };
 
-  const showNextReview = () => {
+  const showReview = (direction) => {
+    if (isTransitioning) {
+      return;
+    }
+    window.clearTimeout(cycleTimer);
     const currentCard = reviewCards[activeIndex];
+    const nextIndex = (activeIndex + direction + reviewCards.length) % reviewCards.length;
+    const nextCard = reviewCards[nextIndex];
     currentCard.classList.remove("is-active");
-    currentCard.classList.add("is-leaving");
+    currentCard.classList.add(direction > 0 ? "is-leaving-left" : "is-leaving-right");
     currentCard.setAttribute("aria-hidden", "true");
+    nextCard.classList.add(direction > 0 ? "is-entering-right" : "is-entering-left");
     isTransitioning = true;
+    previousButton.disabled = true;
+    nextButton.disabled = true;
 
     transitionTimer = window.setTimeout(() => {
-      currentCard.classList.remove("is-leaving");
-      activeIndex = (activeIndex + 1) % reviewCards.length;
-      const nextCard = reviewCards[activeIndex];
+      currentCard.classList.remove("is-leaving-left", "is-leaving-right");
+      activeIndex = nextIndex;
       nextCard.setAttribute("aria-hidden", "false");
-      nextCard.classList.add("is-active");
-      isTransitioning = false;
-      scheduleNextReview();
+      window.requestAnimationFrame(() => {
+        nextCard.classList.remove("is-entering-left", "is-entering-right");
+        nextCard.classList.add("is-active");
+        transitionTimer = window.setTimeout(() => {
+          isTransitioning = false;
+          previousButton.disabled = false;
+          nextButton.disabled = false;
+          scheduleNextReview();
+        }, transitionDuration);
+      });
     }, transitionDuration);
   };
 
   const pauseReviews = () => {
     clearTimers();
     if (isTransitioning) {
-      reviewCards[activeIndex].classList.remove("is-leaving");
+      reviewCards.forEach((card, index) => {
+        card.classList.remove(
+          "is-active",
+          "is-leaving-left",
+          "is-leaving-right",
+          "is-entering-left",
+          "is-entering-right",
+        );
+        card.setAttribute("aria-hidden", String(index !== activeIndex));
+      });
       reviewCards[activeIndex].classList.add("is-active");
-      reviewCards[activeIndex].setAttribute("aria-hidden", "false");
       isTransitioning = false;
+      previousButton.disabled = false;
+      nextButton.disabled = false;
     }
   };
 
@@ -194,6 +235,9 @@ if (reviewsGrid && reviewCards.length > 1) {
       scheduleNextReview();
     }
   });
+
+  previousButton.addEventListener("click", () => showReview(-1));
+  nextButton.addEventListener("click", () => showReview(1));
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {

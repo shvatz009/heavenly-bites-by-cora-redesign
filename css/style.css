@@ -105,7 +105,7 @@ nav a:hover {
 }
 
 @media (min-width: 801px) {
-    .navbar > nav {
+    .navbar>nav {
         flex: 1;
         justify-content: center;
     }
@@ -158,7 +158,6 @@ nav a:hover {
 
 .hero {
     min-height: 80vh;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -192,8 +191,8 @@ nav a:hover {
 
 .hero p {
     max-width: 500px;
-    margin-top: 6rem;
-    
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-buttons {
@@ -219,6 +218,7 @@ nav a:hover {
     border: 1px solid #000;
     border-radius: 20px;
 }
+
 .menu-hero-box {
     max-width: 800px;
     margin: 2rem auto;
@@ -227,6 +227,7 @@ nav a:hover {
     border: 1px solid #000;
     border-radius: 20px;
 }
+
 .catering-hero-box {
     max-width: 800px;
     margin: 2rem auto;
@@ -255,6 +256,7 @@ nav a:hover {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
+
 .catering-form {
     max-width: 600px;
     margin: 2rem auto;
@@ -271,6 +273,7 @@ nav a:hover {
     width: 100%;
     box-sizing: border-box;
 }
+
 /* =========================
    REVIEWS SECTION
 ========================= */
@@ -278,15 +281,18 @@ nav a:hover {
     padding: 80px 20px;
     background: #faf7f2;
 }
+
 .reviews-container {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .section-heading {
     text-align: center;
     max-width: 700px;
     margin: 0 auto 50px;
 }
+
 .eyebrow {
     display: block;
     margin-bottom: 10px;
@@ -295,13 +301,16 @@ nav a:hover {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+
 .section-heading h2 {
     margin-bottom: 15px;
     font-size: 2.5rem;
 }
+
 .section-heading p {
     font-size: 1.1rem;
 }
+
 /* REVIEW GRID */
 .reviews-grid {
     display: grid;
@@ -371,24 +380,28 @@ nav a:hover {
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease,
-                box-shadow 0.3s ease;
+        box-shadow 0.3s ease;
 }
+
 .review-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
+
 /* STARS */
 .stars {
     margin-bottom: 18px;
     font-size: 1.2rem;
     letter-spacing: 3px;
 }
+
 /* REVIEW TEXT */
 .review-text {
     margin-bottom: 25px;
     line-height: 1.7;
     font-size: 1rem;
 }
+
 /* AUTHOR */
 .review-author {
     display: flex;
@@ -403,6 +416,7 @@ nav a:hover {
 .review-author span {
     font-size: 0.85rem;
 }
+
 /* =========================
    RESPONSIVE DESIGN
 ========================= */
@@ -514,7 +528,7 @@ nav a:hover {
     padding-top: 1rem;
 }
 
-.menu-item-actions > * {
+.menu-item-actions>* {
     flex: 1 1 0;
     min-width: 0;
     min-height: 3rem;
@@ -537,7 +551,7 @@ nav a:hover {
     transition: background-color .2s ease, transform .2s ease;
 }
 
-.menu-item-actions > *:hover {
+.menu-item-actions>*:hover {
     background: #f8cbd9;
     transform: translateY(-1px);
 }
@@ -944,8 +958,7 @@ footer {
 @media (max-width: 800px) {
 
     .page-hero h1 {
-        font-size: 6rem;
-        line-height: 1;
+        font-size: clamp(2.5rem, 10vw, 5rem);
     }
 
     .navbar {
@@ -985,6 +998,7 @@ footer {
     }
 
 }
+
 /* ========================= JavaScript Animations ========================= */
 
 .fade-in {

@@ -61,7 +61,6 @@ if (header) {
 // Menu Filtering
 // =========================
 
-const menuFilters = document.querySelectorAll(".menu-filter");
 const filterableMenuItems = document.querySelectorAll(".menu-item");
 
 menuFilters.forEach((filter) => {

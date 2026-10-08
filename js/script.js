@@ -61,6 +61,7 @@ if (header) {
 // Menu Filtering
 // =========================
 
+const menuFilters = document.querySelectorAll(".menu-filter");
 const filterableMenuItems = document.querySelectorAll(".menu-item");
 
 menuFilters.forEach((filter) => {
@@ -277,6 +278,18 @@ if (menuCards.length > 0) {
           <option value="Fudge">Fudge</option>
         </select>
       </div>
+      <div class="order-cupcake-flavor-field" hidden>
+        <label for="order-cupcake-flavor">Specialty cupcake flavor</label>
+        <div class="order-cupcake-select-row">
+          <select id="order-cupcake-flavor">
+          <option value="">Select a flavor</option>
+          <option value="Oreo">Oreo — $4.00 each</option>
+          <option value="Reeses">Reeses — $4.00 each</option>
+          <option value="Red Velvet">Red Velvet — $3.50 each</option>
+          </select>
+          <span class="order-cupcake-price" aria-live="polite"></span>
+        </div>
+      </div>
       <div class="order-baked-good-field" hidden>
         <label for="order-baked-good">Baked good</label>
         <select id="order-baked-good">
@@ -355,6 +368,9 @@ if (menuCards.length > 0) {
   const quantityInput = modal.querySelector(".order-quantity");
   const pieFlavorField = modal.querySelector(".order-flavor-field");
   const pieFlavorSelect = modal.querySelector("#order-pie-flavor");
+  const cupcakeFlavorField = modal.querySelector(".order-cupcake-flavor-field");
+  const cupcakeFlavorSelect = modal.querySelector("#order-cupcake-flavor");
+  const cupcakePriceDisplay = modal.querySelector(".order-cupcake-price");
   const bakedGoodField = modal.querySelector(".order-baked-good-field");
   const bakedGoodSelect = modal.querySelector("#order-baked-good");
   const cartItems = cartPanel.querySelector(".order-cart-items");
@@ -377,6 +393,16 @@ if (menuCards.length > 0) {
   const toLocalDateTimeValue = (date) => {
     const pad = (value) => String(value).padStart(2, "0");
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  };
+
+  const getSpecialtyCupcakePrice = (flavor) => {
+    if (flavor === "Red Velvet") {
+      return 3.5;
+    }
+    if (flavor === "Oreo" || flavor === "Reeses") {
+      return 4;
+    }
+    return null;
   };
 
   const renderCart = () => {
@@ -452,10 +478,16 @@ if (menuCards.length > 0) {
     const priceLabel = card.querySelector(".price")?.textContent.trim().replace(/\s+/g, " ") ?? "Contact for pricing";
     const amountMatch = priceLabel.match(/\$([\d,]+(?:\.\d{1,2})?)/);
     const hasPieFlavors = Boolean(card.closest("#pies"));
+    const hasCupcakeFlavors =
+      Boolean(card.closest("#cupcakes")) && name === "Specialty Cupcakes";
     const hasBakedGoodOptions = Boolean(card.closest("#specialty")) && name === "Baked Goods";
     pieFlavorField.hidden = !hasPieFlavors;
     pieFlavorSelect.required = hasPieFlavors;
     pieFlavorSelect.value = "";
+    cupcakeFlavorField.hidden = !hasCupcakeFlavors;
+    cupcakeFlavorSelect.required = hasCupcakeFlavors;
+    cupcakeFlavorSelect.value = "";
+    cupcakePriceDisplay.textContent = "";
     bakedGoodField.hidden = !hasBakedGoodOptions;
     bakedGoodSelect.required = hasBakedGoodOptions;
     bakedGoodSelect.value = "";
@@ -479,6 +511,11 @@ if (menuCards.length > 0) {
     modal.showModal();
     quantityInput.focus();
   };
+
+  cupcakeFlavorSelect.addEventListener("change", () => {
+    const price = getSpecialtyCupcakePrice(cupcakeFlavorSelect.value);
+    cupcakePriceDisplay.textContent = price === null ? "" : `${formatMoney(price)} each`;
+  });
 
   menuCards.forEach((card) => {
     const content = card.querySelector(".menu-item-content");
@@ -512,7 +549,11 @@ if (menuCards.length > 0) {
   modal.querySelector(".order-modal-content").addEventListener("submit", (event) => {
     event.preventDefault();
     const quantity = Number(quantityInput.value);
-    const selectionInput = pieFlavorSelect.required ? pieFlavorSelect : bakedGoodSelect.required ? bakedGoodSelect : null;
+    const selectionInput = [
+      pieFlavorSelect,
+      cupcakeFlavorSelect,
+      bakedGoodSelect,
+    ].find((select) => select.required) ?? null;
     const flavor = selectionInput?.value ?? "";
     if (!selectedItem || !Number.isSafeInteger(quantity) || quantity < 1 || (selectionInput && !flavor)) {
       if (selectionInput && !flavor) {
@@ -525,8 +566,19 @@ if (menuCards.length > 0) {
 
     const cartKey = `${selectedItem.name}::${flavor}`;
     const existingItem = order.get(cartKey);
+    const cupcakePrice = selectedItem.name === "Specialty Cupcakes"
+      ? getSpecialtyCupcakePrice(flavor)
+      : null;
+    const itemToAdd = cupcakePrice === null
+      ? selectedItem
+      : {
+          ...selectedItem,
+          priceLabel: `${formatMoney(cupcakePrice)} each`,
+          unitPrice: cupcakePrice,
+          isStartingPrice: false,
+        };
     order.set(cartKey, {
-      ...selectedItem,
+      ...itemToAdd,
       flavor,
       cartKey,
       quantity: (existingItem?.quantity ?? 0) + quantity,

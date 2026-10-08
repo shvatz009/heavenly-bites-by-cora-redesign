@@ -65,7 +65,7 @@
         </div>
         <div class="product-grid">
           <article class="product-card">
-            <img src="/assets/images/cupcake-image-1.jpg" alt="Assorted cupcakes" />
+            <img src="assets/images/cupcake-image-1.jpg" alt="Assorted cupcakes" />
             <div class="product-content">
               <h3>Cupcakes</h3>
               <p>Classic and specialty flavors baked fresh.</p>
@@ -73,7 +73,7 @@
             </div>
           </article>
           <article class="product-card">
-            <img src="/assets/images/resese-cake-1.jpg" alt="Decorated celebration cake" />
+            <img src="assets/images/resese-cake-1.jpg" alt="Decorated celebration cake" />
             <div class="product-content">
               <h3>Custom Cakes</h3>
               <p>Make your celebration extra special.</p>
@@ -81,7 +81,7 @@
             </div>
           </article>
           <article class="product-card">
-            <img src="/assets/images/cookies-img-1.jpg" alt="Fresh bakery cookies" />
+            <img src="assets/images/cookies-img-1.jpg" alt="Fresh bakery cookies" />
             <div class="product-content">
               <h3>Cookies & Treats</h3>
               <p>Homemade sweets for every occasion.</p>
@@ -94,7 +94,7 @@
       <section id="catering" class="catering">
         <div class="catering-image">
           <img
-            src="/assets/images/cherry-cheesecake-1.jpg"
+            src="assets/images/cherry-cheesecake-1.jpg"
             alt="Desserts prepared for a catered event"
           />
         </div>
@@ -270,39 +270,5 @@
       <p class="copyright">© 2026 Heavenly Bites by Cora</p>
     </footer>
     <script src="js/script.js"></script>
-    <script>
-      // =========================
-      // Header Scroll Effect
-      // =========================
-      const header = document.querySelector(".navbar");
-      if (header) {
-        window.addEventListener("scroll", () => {
-          header.classList.toggle("scrolled", window.scrollY > 20);
-        });
-      }
-      // =========================
-      // Menu Page Filtering
-      // =========================
-      const menuFilters = document.querySelectorAll(".menu-filter");
-      const menuItems = document.querySelectorAll(".menu-item");
-      if (menuFilters.length > 0) {
-        menuFilters.forEach((filter) => {
-          filter.addEventListener("click", () => {
-            const category = filter.dataset.category;
-            menuFilters.forEach((button) => {
-              button.classList.remove("active");
-            });
-            filter.classList.add("active");
-            menuItems.forEach((item) => {
-              if (category === "all" || item.dataset.category === category) {
-                item.style.display = "block";
-              } else {
-                item.style.display = "none";
-              }
-            });
-          });
-        });
-      }
-    </script>
   </body>
 </html>

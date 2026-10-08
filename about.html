@@ -53,7 +53,7 @@
         <div class="catering">
           <div class="catering-image">
             <img
-              src="/assets/images/our-story.jpg"
+              src="assets/images/our-story.jpg"
               alt="Cora, owner of Heavenly Bites by Cora"
             />
           </div>
@@ -120,7 +120,7 @@
         </div>
         <div class="catering-image">
           <img
-            src="/assets/images/cookies-img-2.jpg"
+            src="assets/images/cookies-img-2.jpg"
             alt="Fresh baked desserts from Heavenly Bites by Cora"
           />
         </div>
@@ -195,39 +195,5 @@
       <p class="copyright">© 2026 Heavenly Bites by Cora</p>
     </footer>
     <script src="js/script.js"></script>
-    <script>
-      // =========================
-      // Header Scroll Effect
-      // =========================
-      const header = document.querySelector(".navbar");
-      if (header) {
-        window.addEventListener("scroll", () => {
-          header.classList.toggle("scrolled", window.scrollY > 20);
-        });
-      }
-      // =========================
-      // Menu Page Filtering
-      // =========================
-      const menuFilters = document.querySelectorAll(".menu-filter");
-      const menuItems = document.querySelectorAll(".menu-item");
-      if (menuFilters.length > 0) {
-        menuFilters.forEach((filter) => {
-          filter.addEventListener("click", () => {
-            const category = filter.dataset.category;
-            menuFilters.forEach((button) => {
-              button.classList.remove("active");
-            });
-            filter.classList.add("active");
-            menuItems.forEach((item) => {
-              if (category === "all" || item.dataset.category === category) {
-                item.style.display = "block";
-              } else {
-                item.style.display = "none";
-              }
-            });
-          });
-        });
-      }
-    </script>
   </body>
 </html>

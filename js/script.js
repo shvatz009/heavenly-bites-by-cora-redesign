@@ -5,7 +5,7 @@
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector("nav");
 
-if (menuButton) {
+if (menuButton && navigation) {
   menuButton.addEventListener("click", () => {
     navigation.classList.toggle("nav-open");
   });
@@ -51,12 +51,30 @@ navigationLinks.forEach((link) => {
 
 const header = document.querySelector(".navbar");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 20) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+if (header) {
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  });
+}
+
+// =========================
+// Menu Filtering
+// =========================
+
+const menuFilters = document.querySelectorAll(".menu-filter");
+const filterableMenuItems = document.querySelectorAll(".menu-item");
+
+menuFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    const category = filter.dataset.category;
+    menuFilters.forEach((button) => button.classList.remove("active"));
+    filter.classList.add("active");
+
+    filterableMenuItems.forEach((item) => {
+      item.style.display =
+        category === "all" || item.dataset.category === category ? "" : "none";
+    });
+  });
 });
 
 // =========================
